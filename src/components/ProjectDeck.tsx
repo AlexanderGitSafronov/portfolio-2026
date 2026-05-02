@@ -109,7 +109,7 @@ function DeckCard({
   const y = useTransform(scrollYProgress, (p) => {
     let v: number;
     if (isFirst) v = lerp(p, 0, 1, 0, finalYPct);
-    else if (p < enterEnd) v = lerp(p, enterStart, enterEnd, 70, 0);
+    else if (p < enterEnd) v = lerp(p, enterStart, enterEnd, 100, 0);
     else if (isLast) v = 0;
     else v = lerp(p, enterEnd, 1, 0, finalYPct);
     return `${v}%`;
@@ -132,7 +132,7 @@ function DeckCard({
   return (
     <motion.div
       style={{ y, scale, opacity, zIndex: index }}
-      className="absolute inset-x-4 top-1/2 mx-auto w-full max-w-3xl -translate-y-1/2 will-change-transform"
+      className="absolute inset-x-4 top-1/2 mx-auto w-full max-w-5xl -translate-y-1/2 will-change-transform"
     >
       <DeckCardInner project={project} dict={dict} />
     </motion.div>
@@ -182,7 +182,10 @@ function DeckCardInner({
         )}
       />
 
-      <div className="relative aspect-[16/10] w-full overflow-hidden">
+      <div
+        className="relative w-full overflow-hidden"
+        style={{ height: "min(38vh, 460px)" }}
+      >
         <Preview
           slug={project.slug}
           url={project.href}
@@ -192,7 +195,7 @@ function DeckCardInner({
         />
       </div>
 
-      <div className="relative z-10 flex flex-col gap-4 p-5 md:p-7">
+      <div className="relative z-10 flex flex-col gap-3 p-4 md:gap-4 md:p-6">
         <div className="flex items-start justify-between gap-3">
           <div className="flex min-w-0 items-center gap-3">
             <div
