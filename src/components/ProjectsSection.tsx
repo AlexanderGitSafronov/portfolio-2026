@@ -1,42 +1,95 @@
 "use client";
 
-import { motion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
+import { useRef } from "react";
 import { projects } from "@/lib/projects";
 import type { Dictionary } from "@/i18n/dictionaries";
-import { ProjectCard } from "./ProjectCard";
+import { StackedProjectCard } from "./StackedProjectCard";
 
 type Props = { dict: Dictionary };
 
 export function ProjectsSection({ dict }: Props) {
   const lead = dict.projects.lead.replace("{count}", String(projects.length));
+  const stackRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: stackRef,
+    offset: ["start start", "end end"],
+  });
 
   return (
-    <section
-      id="work"
-      className="relative mx-auto w-full max-w-7xl scroll-mt-24 px-6 py-24 md:py-32"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-12 flex flex-col items-start gap-3 md:mb-16"
-      >
-        <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-white/55">
-          {dict.projects.kicker}
-        </span>
-        <h2 className="text-balance text-4xl font-semibold tracking-[-0.03em] md:text-6xl">
-          <span className="text-white">{dict.projects.titleA}</span>{" "}
-          <span className="text-gradient">{dict.projects.titleB}</span>
-        </h2>
-        <p className="mt-2 max-w-2xl text-white/55 md:text-lg">{lead}</p>
-      </motion.div>
+    <section id="work" className="relative scroll-mt-24">
+      <div className="mx-auto w-full max-w-7xl px-6 pt-24 pb-16 md:pt-32">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-start gap-3"
+        >
+          <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-white/55">
+            {dict.projects.kicker}
+          </span>
+          <h2 className="text-balance text-4xl font-semibold tracking-[-0.03em] md:text-6xl">
+            <span className="text-white">{dict.projects.titleA}</span>{" "}
+            <span className="text-gradient">{dict.projects.titleB}</span>
+          </h2>
+          <p className="mt-2 max-w-2xl text-white/55 md:text-lg">{lead}</p>
+        </motion.div>
+      </div>
 
-      <div className="grid auto-rows-fr grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+      <div ref={stackRef} className="relative">
         {projects.map((p, i) => (
-          <ProjectCard key={p.slug} project={p} index={i} dict={dict} />
+          <StackedProjectCard
+            key={p.slug}
+            project={p}
+            index={i}
+            total={projects.length}
+            dict={dict}
+          />
         ))}
       </div>
+
+      <FloatingCounter progress={scrollYProgress} total={projects.length} />
     </section>
+  );
+}
+
+function FloatingCounter({
+  progress,
+  total,
+}: {
+  progress: MotionValue<number>;
+  total: number;
+}) {
+  const opacity = useTransform(progress, [0, 0.02, 0.98, 1], [0, 1, 1, 0]);
+  const widthPct = useTransform(progress, (v) => `${Math.round(v * 100)}%`);
+  const counterText = useTransform(progress, (v) => {
+    const i = Math.min(total, Math.max(1, Math.ceil(v * total)));
+    return `${String(i).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+  });
+
+  return (
+    <motion.div
+      style={{ opacity }}
+      className="pointer-events-none fixed bottom-6 left-1/2 z-40 -translate-x-1/2"
+    >
+      <div className="flex items-center gap-3 rounded-full border border-white/10 bg-[#0a0a12]/80 px-4 py-2 backdrop-blur-xl">
+        <motion.span className="font-mono text-xs text-white/85">
+          {counterText}
+        </motion.span>
+        <div className="relative h-1 w-32 overflow-hidden rounded-full bg-white/10">
+          <motion.div
+            style={{ width: widthPct }}
+            className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400"
+          />
+        </div>
+      </div>
+    </motion.div>
   );
 }
