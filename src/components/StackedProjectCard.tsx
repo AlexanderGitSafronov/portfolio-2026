@@ -25,7 +25,9 @@ export function StackedProjectCard({ project, index, total, dict }: Props) {
   });
 
   // Only scale — no opacity (opacity caused ghost flicker through translucent bg)
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.96], {
+    clamp: true,
+  });
 
   const items = dict.projects.items as Record<
     string,
@@ -33,8 +35,12 @@ export function StackedProjectCard({ project, index, total, dict }: Props) {
   >;
   const t = items[project.slug] ?? { tagline: "", description: "" };
 
-  // Each card pins progressively lower so previous ones peek through above
-  const stickyTop = `${1.25 + index * 1.1}rem`;
+  // Peek effect — cards pin slightly lower than the previous one so the
+  // accent strips form a deck. Cap depth at 5 cards so we don't accumulate
+  // a chaotic stack of 14 strips at the top by the end of the section.
+  const PEEK = 0.4;
+  const PEEK_CAP = 5;
+  const stickyTop = `${0.75 + Math.min(index, PEEK_CAP) * PEEK}rem`;
 
   return (
     <div
