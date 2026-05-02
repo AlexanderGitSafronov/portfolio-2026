@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown, FileText, Sparkles } from "lucide-react";
 import type { Dictionary } from "@/i18n/dictionaries";
-import { GithubIcon } from "./icons/GithubIcon";
 
 const reveal = {
   hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
@@ -83,13 +82,13 @@ export function Hero({ dict }: Props) {
           <span className="ml-1 transition group-hover:translate-x-0.5">→</span>
         </a>
         <a
-          href="https://github.com/AlexanderGitSafronov"
+          href="/cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 backdrop-blur transition hover:bg-white/10"
         >
-          <GithubIcon className="h-4 w-4" />
-          {dict.hero.ctaGithub}
+          <FileText className="h-4 w-4" />
+          {dict.hero.ctaCv}
         </a>
       </motion.div>
 

@@ -11,6 +11,7 @@ type Props = { dict: Dictionary; locale: Locale };
 export function Navbar({ dict, locale }: Props) {
   const links = [
     { href: "#work", label: dict.nav.work },
+    { href: "#experience", label: dict.nav.experience },
     { href: "#about", label: dict.nav.about },
     { href: "#contact", label: dict.nav.contact },
   ];

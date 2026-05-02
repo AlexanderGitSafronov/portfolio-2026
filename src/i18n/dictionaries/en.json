@@ -1,26 +1,28 @@
 {
   "meta": {
-    "title": "Alexander Safronov — Full-stack developer",
-    "description": "Full-stack developer building modern web apps with Next.js and TypeScript. 14 live products shipped on Vercel."
+    "title": "Alexander Safronov — Front-end Developer",
+    "description": "Front-end Developer with 3+ years of commercial experience. Landing pages, e-commerce, and corporate sites with HTML/CSS/JS, React, WordPress. 14 live products shipped on Vercel."
   },
   "nav": {
     "work": "Work",
+    "experience": "Experience",
     "about": "About",
     "contact": "Contact",
-    "hireMe": "Hire me"
+    "hireMe": "Hire me",
+    "cv": "CV"
   },
   "hero": {
     "available": "Available for new projects",
-    "h1Line1": "Building digital",
-    "h1Line2": "experiences",
-    "h1Line3": "that ship.",
-    "leadBefore": "Full-stack developer crafting fast, modern web apps with",
-    "leadNext": "Next.js",
+    "h1Line1": "Front-end Developer",
+    "h1Line2": "shipping",
+    "h1Line3": "real results.",
+    "leadBefore": "3+ years of commercial experience — building landing pages, e-commerce platforms and corporate sites with",
+    "leadNext": "React",
     "leadAnd": "and",
-    "leadTs": "TypeScript",
-    "leadAfter": ". Currently shipping a portfolio of 14 live products.",
+    "leadTs": "Next.js",
+    "leadAfter": ". Currently shipping 14 live products in production.",
     "ctaWork": "Explore my work",
-    "ctaGithub": "GitHub"
+    "ctaCv": "Download CV"
   },
   "projects": {
     "kicker": "◆ Selected work",
@@ -90,32 +92,88 @@
       }
     }
   },
+  "experience": {
+    "kicker": "◆ Work experience",
+    "titleA": "3+ years",
+    "titleB": "of commercial development.",
+    "lead": "Front-end Developer comfortable working in cross-functional teams, integrating third-party APIs and delivering projects end-to-end — from layout to production.",
+    "items": {
+      "traffic-devils": {
+        "role": "Front-end Developer · Traffic Devils",
+        "bullets": [
+          "Developed landing pages and pre-landing pages for affiliate marketing campaigns — responsive, cross-browser, pixel-perfect from Figma/PSD.",
+          "Integrated custom designs into WordPress: sliced layouts into WP themes and page templates from scratch.",
+          "Built a Telegram bot to automate routine team tasks and streamline internal workflows, reducing manual operations.",
+          "Performed ongoing maintenance: bug fixing, performance improvements, and cross-browser compatibility."
+        ]
+      },
+      "karat-team": {
+        "role": "Front-end Developer · Karat Team",
+        "bullets": [
+          "Built a full-featured online store integrated with a CRM system for automated order management.",
+          "Configured API integrations with CRM, Google Sheets, and Keitaro — reduced order processing and tracking time.",
+          "Developed multiple landing pages for product sales campaigns, meeting deadlines and client requirements.",
+          "Created a training website with a quiz/test module for onboarding new call center employees.",
+          "Delivered a WooCommerce store for a partner company, enabling a new sales channel.",
+          "Implemented a corporate multilingual website on React with an admin panel supporting CRUD operations for service cards, rendered via API."
+        ]
+      },
+      "platora": {
+        "role": "Front-end Developer · Platora",
+        "bullets": [
+          "Developed the front-end for a large multi-page e-commerce platform and several single-page sites.",
+          "Implemented responsive layouts and UI components: forms, modals, carousels, navigation menus.",
+          "Integrated Google Maps API for location-based features."
+        ]
+      }
+    }
+  },
+  "education": {
+    "kicker": "◆ Education",
+    "uniName": "National Polytechnic University of Odessa",
+    "uniProgram": "System Engineering · Automation & Computer-Integrated Technologies · Intelligent Computer Control Systems",
+    "hillel": "Hillel IT School — Front End Pro",
+    "viewCert": "View certificate"
+  },
+  "languages": {
+    "kicker": "◆ Languages",
+    "langs": {
+      "uk": "Ukrainian",
+      "ru": "Russian",
+      "en": "English"
+    },
+    "levels": {
+      "uk": "Native",
+      "ru": "Native",
+      "en": "A1 — Beginner"
+    }
+  },
   "about": {
     "kicker": "◆ About",
-    "titleA": "Designer-developer",
-    "titleB": "on a mission.",
-    "lead": "I'm Alexander — a full-stack developer who treats every project like a product. I build apps people use daily: finance trackers, inventory tools, planners, games. Shipping is the goal.",
+    "titleA": "Front-end with a",
+    "titleB": "product mindset.",
+    "lead": "I'm Alexander — Front-end Developer with 3+ years of commercial experience. I build landing pages, e-commerce and corporate sites. On the side I ship 14 of my own products on Vercel: full-stack Next.js with Prisma and PostgreSQL.",
     "stats": {
       "products": "Live products",
-      "years": "Years shipping",
-      "coffee": "Cups of coffee"
+      "years": "Years of commercial experience",
+      "companies": "Companies"
     },
     "values": {
       "ship": {
         "title": "Ship fast",
-        "body": "I build with proven primitives — Next.js, Prisma, Tailwind — and skip the bikeshed. Production beats perfection."
+        "body": "I build with proven tools — React, Next.js, Tailwind, WordPress — and skip the bikeshed. Production beats perfection."
       },
       "fullstack": {
-        "title": "Full-stack thinking",
-        "body": "From schema to UI motion. I own the whole pipeline so the experience holds together end-to-end."
+        "title": "End-to-end delivery",
+        "body": "Pixel-perfect markup from Figma, API integrations (CRM, Google Sheets, Keitaro), deploy and maintenance. I own projects from layout to production."
       },
       "clean": {
-        "title": "Clean & typed",
-        "body": "Strict TypeScript, server components, and components that read like the spec."
+        "title": "Clean code",
+        "body": "ES6+, SASS, component-based architecture. Code that's easy to read, maintain and hand off to a team."
       },
       "details": {
         "title": "Detail obsessed",
-        "body": "Microinteractions, loading states, empty states, edge cases. The polish is the product."
+        "body": "Cross-browser compatibility, performance, mobile responsiveness, edge cases. The polish is the product."
       }
     }
   },
@@ -124,10 +182,15 @@
     "titleA": "Have an idea?",
     "titleB": "Let's build it.",
     "lead": "Whether it's a polished MVP, a side-project you want shipped, or a complex full-stack app — I'm down to talk.",
-    "github": "GitHub"
+    "email": "Email",
+    "phone": "Phone",
+    "telegram": "Telegram",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "downloadCv": "Download CV"
   },
   "footer": {
-    "rights": "© {year} Alexander Safronov · Crafted with Next.js & Framer Motion.",
+    "rights": "© {year} Alexander Safronov · Front-end Developer",
     "earth": "Made on Earth"
   }
 }

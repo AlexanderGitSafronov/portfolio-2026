@@ -10,7 +10,7 @@ export function About({ dict }: Props) {
   const stats = [
     { value: "14", label: dict.about.stats.products },
     { value: "3+", label: dict.about.stats.years },
-    { value: "∞", label: dict.about.stats.coffee },
+    { value: "3", label: dict.about.stats.companies },
   ];
 
   const values = [
