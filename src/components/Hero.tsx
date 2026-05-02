@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown, Sparkles } from "lucide-react";
+import type { Dictionary } from "@/i18n/dictionaries";
 import { GithubIcon } from "./icons/GithubIcon";
 
 const reveal = {
@@ -18,7 +19,9 @@ const reveal = {
   }),
 };
 
-export function Hero() {
+type Props = { dict: Dictionary };
+
+export function Hero({ dict }: Props) {
   return (
     <section
       id="top"
@@ -35,7 +38,7 @@ export function Hero() {
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
           <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
         </span>
-        Available for new projects
+        {dict.hero.available}
       </motion.div>
 
       <motion.h1
@@ -45,9 +48,9 @@ export function Hero() {
         animate="show"
         className="text-balance text-center text-[clamp(2.6rem,8vw,7rem)] font-semibold leading-[0.95] tracking-[-0.04em]"
       >
-        <span className="block text-white/95">Building digital</span>
-        <span className="block text-gradient">experiences</span>
-        <span className="block text-white/95">that ship.</span>
+        <span className="block text-white/95">{dict.hero.h1Line1}</span>
+        <span className="block text-gradient">{dict.hero.h1Line2}</span>
+        <span className="block text-white/95">{dict.hero.h1Line3}</span>
       </motion.h1>
 
       <motion.p
@@ -57,10 +60,11 @@ export function Hero() {
         animate="show"
         className="mt-7 max-w-xl text-center text-base text-white/60 md:text-lg"
       >
-        Full-stack developer crafting fast, modern web apps with{" "}
-        <span className="text-white/85">Next.js</span>,{" "}
-        <span className="text-white/85">TypeScript</span> and a love for clean
-        product thinking. Currently shipping a portfolio of 14 live products.
+        {dict.hero.leadBefore}{" "}
+        <span className="text-white/85">{dict.hero.leadNext}</span>{" "}
+        {dict.hero.leadAnd}{" "}
+        <span className="text-white/85">{dict.hero.leadTs}</span>
+        {dict.hero.leadAfter}
       </motion.p>
 
       <motion.div
@@ -75,7 +79,7 @@ export function Hero() {
           className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:scale-[1.02] active:scale-[0.99]"
         >
           <Sparkles className="h-4 w-4" />
-          Explore my work
+          {dict.hero.ctaWork}
           <span className="ml-1 transition group-hover:translate-x-0.5">→</span>
         </a>
         <a
@@ -85,7 +89,7 @@ export function Hero() {
           className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 backdrop-blur transition hover:bg-white/10"
         >
           <GithubIcon className="h-4 w-4" />
-          GitHub
+          {dict.hero.ctaGithub}
         </a>
       </motion.div>
 

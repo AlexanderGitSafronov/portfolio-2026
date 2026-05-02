@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Mail } from "lucide-react";
+import type { Dictionary } from "@/i18n/dictionaries";
 
-export function Contact() {
+type Props = { dict: Dictionary };
+
+export function Contact({ dict }: Props) {
   return (
     <section
       id="contact"
@@ -26,17 +29,14 @@ export function Contact() {
         />
 
         <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-white/55">
-          ◆ Get in touch
+          {dict.contact.kicker}
         </span>
         <h2 className="mt-4 max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-7xl">
-          <span className="text-white">Have an idea?</span>
+          <span className="text-white">{dict.contact.titleA}</span>
           <br />
-          <span className="text-gradient">Let&apos;s build it.</span>
+          <span className="text-gradient">{dict.contact.titleB}</span>
         </h2>
-        <p className="mt-6 max-w-xl text-white/60 md:text-lg">
-          Whether it&apos;s a polished MVP, a side-project you want shipped, or
-          a complex full-stack app — I&apos;m down to talk.
-        </p>
+        <p className="mt-6 max-w-xl text-white/60 md:text-lg">{dict.contact.lead}</p>
 
         <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
           <a
@@ -53,7 +53,7 @@ export function Contact() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3.5 text-sm font-medium text-white/85 backdrop-blur transition hover:bg-white/10"
           >
-            GitHub
+            {dict.contact.github}
             <ArrowUpRight className="h-4 w-4" />
           </a>
         </div>

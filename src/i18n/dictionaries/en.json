@@ -1,0 +1,133 @@
+{
+  "meta": {
+    "title": "Alexander Safronov — Full-stack developer",
+    "description": "Full-stack developer building modern web apps with Next.js and TypeScript. 14 live products shipped on Vercel."
+  },
+  "nav": {
+    "work": "Work",
+    "about": "About",
+    "contact": "Contact",
+    "hireMe": "Hire me"
+  },
+  "hero": {
+    "available": "Available for new projects",
+    "h1Line1": "Building digital",
+    "h1Line2": "experiences",
+    "h1Line3": "that ship.",
+    "leadBefore": "Full-stack developer crafting fast, modern web apps with",
+    "leadNext": "Next.js",
+    "leadAnd": "and",
+    "leadTs": "TypeScript",
+    "leadAfter": ". Currently shipping a portfolio of 14 live products.",
+    "ctaWork": "Explore my work",
+    "ctaGithub": "GitHub"
+  },
+  "projects": {
+    "kicker": "◆ Selected work",
+    "titleA": "Live products,",
+    "titleB": "shipping fast.",
+    "lead": "{count} production apps deployed on Vercel — full-stack Next.js with PostgreSQL, Prisma, and modern PWA capabilities.",
+    "visit": "Visit live",
+    "source": "Source",
+    "private": "Private",
+    "preview": "Preview",
+    "items": {
+      "myitems": {
+        "tagline": "Household inventory PWA",
+        "description": "Personal household inventory PWA with photos, locations and search. Auth.js, Cloudinary, multilingual (en/uk/ru)."
+      },
+      "myfilms": {
+        "tagline": "Movie list & recommendations",
+        "description": "Movie recommendation PWA — share film lists with friends, rate and discover."
+      },
+      "uptolife": {
+        "tagline": "Gamified yearly planner",
+        "description": "Gamified yearly progress planner. Goals, habits, XP — built with next-intl."
+      },
+      "wishlist": {
+        "tagline": "Secret Santa wishlists",
+        "description": "Mobile web app for wishlists and Secret Santa rooms with reservations and comments."
+      },
+      "homepay": {
+        "tagline": "Home utility tracking",
+        "description": "Track meter readings and home utility payments with monthly reports."
+      },
+      "mycash": {
+        "tagline": "Personal finance tracker",
+        "description": "Track income, expenses and savings with rich category breakdowns."
+      },
+      "mysmak": {
+        "tagline": "Taste log & ratings PWA",
+        "description": "Track and rate everything you've tasted. Photos, notes, ratings — all in a PWA."
+      },
+      "pdfreduct": {
+        "tagline": "PDF editor PWA",
+        "description": "PWA PDF editor with merge, split and compress. Storage on Vercel Blob."
+      },
+      "magaz7km": {
+        "tagline": "E-commerce storefront",
+        "description": "Online store with product catalog, cart and checkout flow."
+      },
+      "timergame": {
+        "tagline": "Reaction browser game",
+        "description": "Fast-paced timer-based reaction game playable in the browser."
+      },
+      "rashod": {
+        "tagline": "Expense splitter",
+        "description": "Track shared expenses and split them between people with ease."
+      },
+      "clue": {
+        "tagline": "Mystery puzzle game",
+        "description": "Detective-style puzzle game — find clues and solve the case."
+      },
+      "task-tracker": {
+        "tagline": "Personal tasks",
+        "description": "Lightweight task management with categories, deadlines and priorities."
+      },
+      "crmpro": {
+        "tagline": "Customer relationship platform",
+        "description": "CRM with leads, deals, contacts and pipeline management."
+      }
+    }
+  },
+  "about": {
+    "kicker": "◆ About",
+    "titleA": "Designer-developer",
+    "titleB": "on a mission.",
+    "lead": "I'm Alexander — a full-stack developer who treats every project like a product. I build apps people use daily: finance trackers, inventory tools, planners, games. Shipping is the goal.",
+    "stats": {
+      "products": "Live products",
+      "years": "Years shipping",
+      "coffee": "Cups of coffee"
+    },
+    "values": {
+      "ship": {
+        "title": "Ship fast",
+        "body": "I build with proven primitives — Next.js, Prisma, Tailwind — and skip the bikeshed. Production beats perfection."
+      },
+      "fullstack": {
+        "title": "Full-stack thinking",
+        "body": "From schema to UI motion. I own the whole pipeline so the experience holds together end-to-end."
+      },
+      "clean": {
+        "title": "Clean & typed",
+        "body": "Strict TypeScript, server components, and components that read like the spec."
+      },
+      "details": {
+        "title": "Detail obsessed",
+        "body": "Microinteractions, loading states, empty states, edge cases. The polish is the product."
+      }
+    }
+  },
+  "contact": {
+    "kicker": "◆ Get in touch",
+    "titleA": "Have an idea?",
+    "titleB": "Let's build it.",
+    "lead": "Whether it's a polished MVP, a side-project you want shipped, or a complex full-stack app — I'm down to talk.",
+    "github": "GitHub"
+  },
+  "footer": {
+    "rights": "© {year} Alexander Safronov · Crafted with Next.js & Framer Motion.",
+    "earth": "Made on Earth"
+  }
+}

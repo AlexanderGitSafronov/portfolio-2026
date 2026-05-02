@@ -1,8 +1,6 @@
 export type Project = {
   slug: string;
   name: string;
-  tagline: string;
-  description: string;
   href: string;
   github?: string;
   githubPrivate?: boolean;
@@ -16,9 +14,6 @@ export const projects: Project[] = [
   {
     slug: "myitems",
     name: "MyItems",
-    tagline: "Household inventory PWA",
-    description:
-      "Personal household inventory PWA with photos, locations and search. Auth.js, Cloudinary, multilingual (en/uk/ru).",
     href: "https://myitems-lilac.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/myitems",
     githubPrivate: true,
@@ -30,9 +25,6 @@ export const projects: Project[] = [
   {
     slug: "myfilms",
     name: "MyFilms",
-    tagline: "Movie list & recommendations",
-    description:
-      "Movie recommendation PWA — share film lists with friends, rate and discover.",
     href: "https://myfilms-app.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/myfilms",
     stack: ["Next.js", "PWA", "TMDB"],
@@ -43,9 +35,6 @@ export const projects: Project[] = [
   {
     slug: "uptolife",
     name: "UpToLife",
-    tagline: "Gamified yearly planner",
-    description:
-      "Gamified yearly progress planner. Goals, habits, XP — built with next-intl.",
     href: "https://uptolife.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/UpToLife",
     githubPrivate: true,
@@ -57,9 +46,6 @@ export const projects: Project[] = [
   {
     slug: "wishlist",
     name: "WishList",
-    tagline: "Secret Santa wishlists",
-    description:
-      "Mobile web app for wishlists and Secret Santa rooms with reservations and comments.",
     href: "https://wishlist-app-inky-chi.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/wishlist-app",
     githubPrivate: true,
@@ -70,9 +56,6 @@ export const projects: Project[] = [
   {
     slug: "homepay",
     name: "HomePay",
-    tagline: "Home utility tracking",
-    description:
-      "Track meter readings and home utility payments with monthly reports.",
     href: "https://homepay-tau.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/homepay",
     githubPrivate: true,
@@ -83,9 +66,6 @@ export const projects: Project[] = [
   {
     slug: "mycash",
     name: "MyCash",
-    tagline: "Personal finance tracker",
-    description:
-      "Track income, expenses and savings with rich category breakdowns.",
     href: "https://mycash-mu.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/myCash",
     githubPrivate: true,
@@ -96,9 +76,6 @@ export const projects: Project[] = [
   {
     slug: "mysmak",
     name: "MySmak",
-    tagline: "Taste log & ratings PWA",
-    description:
-      "Track and rate everything you've tasted. Photos, notes, ratings — all in a PWA.",
     href: "https://mysmak.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/mysmak",
     githubPrivate: true,
@@ -110,9 +87,6 @@ export const projects: Project[] = [
   {
     slug: "pdfreduct",
     name: "PDFReduct",
-    tagline: "PDF editor PWA",
-    description:
-      "PWA PDF editor with merge, split and compress. Storage on Vercel Blob.",
     href: "https://pdfreduct.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/pdfreduct",
     githubPrivate: true,
@@ -123,9 +97,6 @@ export const projects: Project[] = [
   {
     slug: "magaz7km",
     name: "Magaz 7km",
-    tagline: "E-commerce storefront",
-    description:
-      "Online store with product catalog, cart and checkout flow.",
     href: "https://magaz7km.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/magaz7km",
     githubPrivate: true,
@@ -136,9 +107,6 @@ export const projects: Project[] = [
   {
     slug: "timergame",
     name: "TimerGame",
-    tagline: "Reaction browser game",
-    description:
-      "Fast-paced timer-based reaction game playable in the browser.",
     href: "https://timergame-jqnx.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/timergame",
     githubPrivate: true,
@@ -149,9 +117,6 @@ export const projects: Project[] = [
   {
     slug: "rashod",
     name: "Rashod",
-    tagline: "Expense splitter",
-    description:
-      "Track shared expenses and split them between people with ease.",
     href: "https://rashod.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/rashod",
     githubPrivate: true,
@@ -162,9 +127,6 @@ export const projects: Project[] = [
   {
     slug: "clue",
     name: "Clue",
-    tagline: "Mystery puzzle game",
-    description:
-      "Detective-style puzzle game — find clues and solve the case.",
     href: "https://clue-phi.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/Clue",
     githubPrivate: true,
@@ -175,9 +137,6 @@ export const projects: Project[] = [
   {
     slug: "task-tracker",
     name: "TaskTracker",
-    tagline: "Personal tasks",
-    description:
-      "Lightweight task management with categories, deadlines and priorities.",
     href: "https://task-tracker-teal-phi.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/taskTracker",
     githubPrivate: true,
@@ -188,9 +147,6 @@ export const projects: Project[] = [
   {
     slug: "crmpro",
     name: "CRM Pro",
-    tagline: "Customer relationship platform",
-    description:
-      "CRM with leads, deals, contacts and pipeline management.",
     href: "https://crmpro-gamma.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/CRM",
     githubPrivate: true,

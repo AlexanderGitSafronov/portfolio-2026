@@ -2,37 +2,40 @@
 
 import { motion } from "framer-motion";
 import { Code2, Layers, Rocket, Sparkles } from "lucide-react";
+import type { Dictionary } from "@/i18n/dictionaries";
 
-const stats = [
-  { value: "14", label: "Live products" },
-  { value: "3+", label: "Years shipping" },
-  { value: "∞", label: "Cups of coffee" },
-];
+type Props = { dict: Dictionary };
 
-const values = [
-  {
-    icon: Rocket,
-    title: "Ship fast",
-    body: "I build with proven primitives — Next.js, Prisma, Tailwind — and skip the bikeshed. Production beats perfection.",
-  },
-  {
-    icon: Layers,
-    title: "Full-stack thinking",
-    body: "From schema to UI motion. I own the whole pipeline so the experience holds together end-to-end.",
-  },
-  {
-    icon: Code2,
-    title: "Clean & typed",
-    body: "Strict TypeScript, server components, and components that read like the spec.",
-  },
-  {
-    icon: Sparkles,
-    title: "Detail obsessed",
-    body: "Microinteractions, loading states, empty states, edge cases. The polish is the product.",
-  },
-];
+export function About({ dict }: Props) {
+  const stats = [
+    { value: "14", label: dict.about.stats.products },
+    { value: "3+", label: dict.about.stats.years },
+    { value: "∞", label: dict.about.stats.coffee },
+  ];
 
-export function About() {
+  const values = [
+    {
+      icon: Rocket,
+      title: dict.about.values.ship.title,
+      body: dict.about.values.ship.body,
+    },
+    {
+      icon: Layers,
+      title: dict.about.values.fullstack.title,
+      body: dict.about.values.fullstack.body,
+    },
+    {
+      icon: Code2,
+      title: dict.about.values.clean.title,
+      body: dict.about.values.clean.body,
+    },
+    {
+      icon: Sparkles,
+      title: dict.about.values.details.title,
+      body: dict.about.values.details.body,
+    },
+  ];
+
   return (
     <section
       id="about"
@@ -47,17 +50,13 @@ export function About() {
           className="lg:col-span-5"
         >
           <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-white/55">
-            ◆ About
+            {dict.about.kicker}
           </span>
           <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
-            <span className="text-white">Designer-developer</span>{" "}
-            <span className="text-gradient">on a mission.</span>
+            <span className="text-white">{dict.about.titleA}</span>{" "}
+            <span className="text-gradient">{dict.about.titleB}</span>
           </h2>
-          <p className="mt-6 text-white/65 md:text-lg">
-            I&apos;m Alexander — a full-stack developer who treats every project
-            like a product. I build apps people use daily: finance trackers,
-            inventory tools, planners, games. Shipping is the goal.
-          </p>
+          <p className="mt-6 text-white/65 md:text-lg">{dict.about.lead}</p>
 
           <div className="mt-10 grid grid-cols-3 gap-4">
             {stats.map((s) => (

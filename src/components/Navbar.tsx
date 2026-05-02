@@ -2,14 +2,19 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import type { Dictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
-const links = [
-  { href: "#work", label: "Work" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
-];
+type Props = { dict: Dictionary; locale: Locale };
 
-export function Navbar() {
+export function Navbar({ dict, locale }: Props) {
+  const links = [
+    { href: "#work", label: dict.nav.work },
+    { href: "#about", label: dict.nav.about },
+    { href: "#contact", label: dict.nav.contact },
+  ];
+
   return (
     <motion.header
       initial={{ y: -24, opacity: 0 }}
@@ -19,7 +24,7 @@ export function Navbar() {
     >
       <nav className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-2 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.35)]">
         <Link
-          href="#top"
+          href={`/${locale}#top`}
           className="ml-2 mr-3 flex items-center gap-2 text-sm font-medium tracking-tight"
         >
           <span className="relative grid h-7 w-7 place-items-center rounded-full bg-gradient-to-br from-violet-400 via-fuchsia-500 to-cyan-400">
@@ -40,11 +45,13 @@ export function Navbar() {
             {l.label}
           </Link>
         ))}
+        <div className="mx-1 h-5 w-px bg-white/10" />
+        <LanguageSwitcher current={locale} />
         <a
           href="mailto:sasha.safronov1996161681@gmail.com"
           className="ml-1 rounded-full bg-white px-3.5 py-1.5 text-sm font-medium text-black transition hover:bg-white/90"
         >
-          Hire me
+          {dict.nav.hireMe}
         </a>
       </nav>
     </motion.header>
