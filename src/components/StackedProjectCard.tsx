@@ -30,29 +30,29 @@ export function StackedProjectCard({
   // This card occupies the scroll window [start, end] of the section's progress.
   const start = index / total;
   const end = (index + 1) / total;
+  const isLast = index === total - 1;
 
-  // After this card's window ends, slide it up off-screen, revealing the next card.
-  // Last card never slides off (end=1, clamp keeps y at 0%).
+  // Framer Motion compiles transforms to Web Animations whose offsets must
+  // live in [0,1]. For the last card end=1, so end+0.02 would crash. The
+  // last card never slides off anyway, so we feed it a safe constant range.
   const y = useTransform(
     sectionProgress,
-    [end - 0.01, end + 0.02],
-    ["0%", "-105%"],
+    isLast ? [0, 1] : [end - 0.01, end + 0.02],
+    isLast ? ["0%", "0%"] : ["0%", "-105%"],
     { clamp: true }
   );
 
-  // Light scale-down right before sliding away — gives subtle "pushed back" feel.
   const scale = useTransform(
     sectionProgress,
-    [start, end - 0.02, end + 0.02],
-    [1, 1, 0.95],
+    isLast ? [0, 1] : [start, end - 0.02, end + 0.02],
+    isLast ? [1, 1] : [1, 1, 0.95],
     { clamp: true }
   );
 
-  // Card fully fades the moment it leaves frame — kills any ghosting.
   const opacity = useTransform(
     sectionProgress,
-    [end, end + 0.02],
-    [1, 0],
+    isLast ? [0, 1] : [end, end + 0.02],
+    isLast ? [1, 1] : [1, 0],
     { clamp: true }
   );
 
