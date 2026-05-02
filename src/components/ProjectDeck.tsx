@@ -15,9 +15,19 @@ import type { Dictionary } from "@/i18n/dictionaries";
 import { GithubIcon } from "./icons/GithubIcon";
 import { Preview } from "./Preview";
 
-type Props = { projects: Project[]; dict: Dictionary };
+type Props = {
+  projects: Project[];
+  dict: Dictionary;
+  perCardVh?: number;
+  className?: string;
+};
 
-export function ProjectDeck({ projects, dict }: Props) {
+export function ProjectDeck({
+  projects,
+  dict,
+  perCardVh = 80,
+  className,
+}: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
 
@@ -42,8 +52,8 @@ export function ProjectDeck({ projects, dict }: Props) {
   return (
     <div
       ref={ref}
-      style={{ height: `${total * 80}vh` }}
-      className="relative mt-6"
+      style={{ height: `${total * perCardVh}vh` }}
+      className={cn("relative mt-6", className)}
     >
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-4">
         {projects.map((p, i) => (
@@ -90,14 +100,16 @@ function DeckCard({
   const depth = total - 1 - index; // cards that land on top of this one
   const enterStart = Math.max(0, (index - 1) * stride);
   const enterEnd = Math.min(1, index * stride);
-  const finalYPct = -depth * 3;
-  const finalScale = 1 - depth * 0.025;
-  const finalOpacity = depth === 0 ? 1 : Math.max(0.4, 1 - depth * 0.12);
+  // Cap the visual depth at 4 so 10-card decks don't fan out wildly.
+  const visualDepth = Math.min(depth, 4);
+  const finalYPct = -visualDepth * 1.6;
+  const finalScale = 1 - visualDepth * 0.018;
+  const finalOpacity = visualDepth === 0 ? 1 : Math.max(0.55, 1 - visualDepth * 0.1);
 
   const y = useTransform(scrollYProgress, (p) => {
     let v: number;
     if (isFirst) v = lerp(p, 0, 1, 0, finalYPct);
-    else if (p < enterEnd) v = lerp(p, enterStart, enterEnd, 110, 0);
+    else if (p < enterEnd) v = lerp(p, enterStart, enterEnd, 70, 0);
     else if (isLast) v = 0;
     else v = lerp(p, enterEnd, 1, 0, finalYPct);
     return `${v}%`;
