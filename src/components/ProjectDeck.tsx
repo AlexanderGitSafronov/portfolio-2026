@@ -184,7 +184,7 @@ function DeckCardInner({
 
       <div
         className="relative w-full overflow-hidden"
-        style={{ height: "min(calc(38vh + 150px), 610px)" }}
+        style={{ height: "min(calc(38vh + 110px), 570px)" }}
       >
         <Preview
           slug={project.slug}
