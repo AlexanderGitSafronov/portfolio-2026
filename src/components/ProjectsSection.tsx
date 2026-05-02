@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { projects } from "@/lib/projects";
 import type { Dictionary } from "@/i18n/dictionaries";
+import { ProjectCard } from "./ProjectCard";
 import { ProjectDeck } from "./ProjectDeck";
 
 type Props = { dict: Dictionary };
@@ -37,17 +38,21 @@ export function ProjectsSection({ dict }: Props) {
       {featured.length > 0 && <ProjectDeck projects={featured} dict={dict} />}
 
       {rest.length > 0 && (
-        <div className="pt-12 md:pt-20">
+        <div className="pb-24 pt-12 md:pb-32 md:pt-20">
           <motion.h3
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="text-2xl font-semibold tracking-tight text-white/90 md:text-3xl"
+            className="mb-8 text-2xl font-semibold tracking-tight text-white/90 md:text-3xl"
           >
             {dict.projects.moreTitle ?? "More projects"}
           </motion.h3>
-          <ProjectDeck projects={rest} dict={dict} perCardVh={55} />
+          <div className="grid auto-rows-fr grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+            {rest.map((p, i) => (
+              <ProjectCard key={p.slug} project={p} index={i} dict={dict} />
+            ))}
+          </div>
         </div>
       )}
     </section>
