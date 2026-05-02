@@ -52,6 +52,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Prisma", "Auth"],
     accent: "from-red-500 via-rose-500 to-fuchsia-500",
     year: "2026",
+    featured: true,
   },
   {
     slug: "homepay",
@@ -72,6 +73,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Charts", "Prisma"],
     accent: "from-lime-400 via-green-500 to-emerald-500",
     year: "2026",
+    featured: true,
   },
   {
     slug: "mysmak",
@@ -93,6 +95,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Tailwind", "Prisma", "Vercel Blob"],
     accent: "from-cyan-400 via-blue-500 to-violet-500",
     year: "2026",
+    featured: true,
   },
   {
     slug: "magaz7km",
