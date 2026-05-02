@@ -53,6 +53,20 @@ async function shoot(browser, { slug, url }) {
     Pragma: "no-cache",
   });
 
+  // Track every setInterval ID so we can stop them all before screenshotting.
+  // Auto-rotating hero carousels (e.g. magaz7km) rotate every ~3s and have
+  // already moved off the only loaded slide by the time we shoot, leaving
+  // alt-text-only broken-image rectangles in the preview.
+  await page.evaluateOnNewDocument(() => {
+    const orig = window.setInterval;
+    window.__intervals = [];
+    window.setInterval = function (...args) {
+      const id = orig.apply(this, args);
+      window.__intervals.push(id);
+      return id;
+    };
+  });
+
   // Kill CSS animations + reveal-on-scroll scripts that hide content until
   // intersection. With reduced-motion, framer-motion plays its target state
   // immediately instead of fading in.
@@ -67,10 +81,18 @@ async function shoot(browser, { slug, url }) {
     const bustedUrl = `${url}${url.includes("?") ? "&" : "?"}_t=${Date.now()}`;
     await page.goto(bustedUrl, { waitUntil: "networkidle2", timeout: 60_000 });
 
-    // Cold-start grace: Vercel free tier wakes the function on first hit, and
-    // some landing pages defer hero images / lazy-load fonts even after
-    // networkidle. Give them a moment before we touch the DOM.
-    await new Promise((r) => setTimeout(r, 6000));
+    // Brief grace so React hydration + initial carousel mount finish, then
+    // immediately clear any setInterval the page started — this freezes
+    // auto-rotating heroes on slide 0, before they have a chance to swap to
+    // a still-loading slide.
+    await new Promise((r) => setTimeout(r, 1500));
+    await page.evaluate(() => {
+      (window.__intervals || []).forEach((id) => clearInterval(id));
+      window.__intervals = [];
+    });
+
+    // Now give the page a real cold-start grace for everything else.
+    await new Promise((r) => setTimeout(r, 4500));
 
     // Wait for fonts so type isn't swapping during the screenshot
     await page.evaluate(() => document.fonts && document.fonts.ready);
@@ -113,6 +135,13 @@ async function shoot(browser, { slug, url }) {
     await page.evaluate(() => {
       window.scrollTo(0, 200);
       window.scrollTo(0, 0);
+    });
+
+    // Sweep again — anything that registered an interval after the first
+    // sweep (e.g. effects that run on hydration completion) gets cleared.
+    await page.evaluate(() => {
+      (window.__intervals || []).forEach((id) => clearInterval(id));
+      window.__intervals = [];
     });
 
     // Poll until all in-viewport <img> elements have actually decoded — hero
