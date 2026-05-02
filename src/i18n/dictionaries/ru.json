@@ -33,6 +33,7 @@
     "source": "Код",
     "private": "Приват",
     "preview": "Предпросмотр",
+    "moreTitle": "Другие работы",
     "items": {
       "myitems": {
         "tagline": "PWA для домашнего инвентаря",

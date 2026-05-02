@@ -33,6 +33,7 @@
     "source": "Source",
     "private": "Private",
     "preview": "Preview",
+    "moreTitle": "More projects",
     "items": {
       "myitems": {
         "tagline": "Household inventory PWA",
