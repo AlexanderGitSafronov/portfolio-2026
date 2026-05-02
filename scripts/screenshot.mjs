@@ -53,7 +53,12 @@ async function shoot(browser, { slug, url }) {
   ]);
 
   try {
-    await page.goto(url, { waitUntil: "networkidle2", timeout: 45_000 });
+    await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+
+    // Cold-start grace: Vercel free tier wakes the function on first hit, and
+    // some landing pages defer hero images / lazy-load fonts even after
+    // networkidle. Give them a moment before we touch the DOM.
+    await new Promise((r) => setTimeout(r, 4000));
 
     // Wait for fonts so type isn't swapping during the screenshot
     await page.evaluate(() => document.fonts && document.fonts.ready);
@@ -85,8 +90,8 @@ async function shoot(browser, { slug, url }) {
       window.scrollTo(0, 0);
     });
 
-    // Settle
-    await new Promise((r) => setTimeout(r, 2000));
+    // Settle — let revealed sections render, images decode, hero animations land
+    await new Promise((r) => setTimeout(r, 4000));
 
     const file = path.join(outDir, `${slug}.jpg`);
     await page.screenshot({
