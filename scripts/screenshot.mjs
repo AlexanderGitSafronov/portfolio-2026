@@ -44,6 +44,15 @@ async function shoot(browser, { slug, url }) {
   const page = await browser.newPage();
   await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
 
+  // Disable browser cache + send no-cache headers so we always pull the latest
+  // build. Without this, puppeteer happily reuses cached HTML/JS chunks from
+  // older deploys and we end up screenshotting yesterday's site.
+  await page.setCacheEnabled(false);
+  await page.setExtraHTTPHeaders({
+    "Cache-Control": "no-cache",
+    Pragma: "no-cache",
+  });
+
   // Kill CSS animations + reveal-on-scroll scripts that hide content until
   // intersection. With reduced-motion, framer-motion plays its target state
   // immediately instead of fading in.
@@ -53,7 +62,10 @@ async function shoot(browser, { slug, url }) {
   ]);
 
   try {
-    await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+    // Cache-bust the URL too — Vercel's edge cache keys on the full URL, so a
+    // unique query param forces a fresh render past any stale CDN entry.
+    const bustedUrl = `${url}${url.includes("?") ? "&" : "?"}_t=${Date.now()}`;
+    await page.goto(bustedUrl, { waitUntil: "networkidle2", timeout: 60_000 });
 
     // Cold-start grace: Vercel free tier wakes the function on first hit, and
     // some landing pages defer hero images / lazy-load fonts even after
