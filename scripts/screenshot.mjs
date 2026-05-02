@@ -6,9 +6,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const outDir = path.join(__dirname, "..", "public", "previews");
 
+// Per-project extraSettle: extra ms to wait after the standard settle, for
+// sites with intro splashes / sequenced reveal animations that finish later
+// than 6s after networkidle.
 const projects = [
   { slug: "myitems", url: "https://myitems-lilac.vercel.app" },
-  { slug: "myfilms", url: "https://myfilms-app.vercel.app" },
+  { slug: "myfilms", url: "https://myfilms-app.vercel.app", extraSettle: 5000 },
   { slug: "uptolife", url: "https://uptolife.vercel.app" },
   { slug: "wishlist", url: "https://wishlist-app-inky-chi.vercel.app" },
   { slug: "homepay", url: "https://homepay-tau.vercel.app" },
@@ -22,6 +25,9 @@ const projects = [
   { slug: "task-tracker", url: "https://task-tracker-teal-phi.vercel.app" },
   { slug: "crmpro", url: "https://crmpro-gamma.vercel.app" },
 ];
+
+// Optional CLI arg: filter to a single slug (useful for re-shooting one site)
+const onlySlug = process.argv[2];
 
 // Common cookie / consent / popup selectors that should be hidden so they
 // don't ruin the shot. We just hide them, the page state otherwise stays
@@ -40,7 +46,7 @@ const HIDE_SELECTORS = [
   ".CookieConsent",
 ];
 
-async function shoot(browser, { slug, url }) {
+async function shoot(browser, { slug, url, extraSettle = 0 }) {
   const page = await browser.newPage();
   await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
 
@@ -161,7 +167,7 @@ async function shoot(browser, { slug, url }) {
     ).catch(() => {});
 
     // Settle — let revealed sections render, images decode, hero animations land
-    await new Promise((r) => setTimeout(r, 6000));
+    await new Promise((r) => setTimeout(r, 6000 + extraSettle));
 
     const file = path.join(outDir, `${slug}.jpg`);
     await page.screenshot({
@@ -183,9 +189,13 @@ const browser = await puppeteer.launch({
   args: ["--no-sandbox", "--disable-setuid-sandbox"],
 });
 
+const filtered = onlySlug
+  ? projects.filter((p) => p.slug === onlySlug)
+  : projects;
+
 const concurrency = 3;
-for (let i = 0; i < projects.length; i += concurrency) {
-  const batch = projects.slice(i, i + concurrency);
+for (let i = 0; i < filtered.length; i += concurrency) {
+  const batch = filtered.slice(i, i + concurrency);
   await Promise.all(batch.map((p) => shoot(browser, p)));
 }
 
