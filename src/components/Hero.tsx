@@ -1,8 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { ArrowDown, FileText, Sparkles } from "lucide-react";
+import { useRef } from "react";
 import type { Dictionary } from "@/i18n/dictionaries";
+import { MagneticButton } from "./MagneticButton";
 
 const reveal = {
   hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
@@ -21,82 +27,96 @@ const reveal = {
 type Props = { dict: Dictionary };
 
 export function Hero({ dict }: Props) {
+  const ref = useRef<HTMLElement>(null);
+  // Track scroll within the hero to fade + lift content as the user
+  // scrolls past it.
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const opacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 0.3, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
+
   return (
     <section
+      ref={ref}
       id="top"
       className="relative flex min-h-[100svh] flex-col items-center justify-center px-6 pt-32 pb-20"
     >
       <motion.div
-        custom={0}
-        variants={reveal}
-        initial="hidden"
-        animate="show"
-        className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs text-white/70 backdrop-blur"
+        style={{ opacity, y, scale }}
+        className="relative flex flex-col items-center"
       >
-        <span className="relative flex h-1.5 w-1.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-        </span>
-        {dict.hero.available}
+        <motion.div
+          custom={0}
+          variants={reveal}
+          initial="hidden"
+          animate="show"
+          className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs text-white/70 backdrop-blur"
+        >
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          </span>
+          {dict.hero.available}
+        </motion.div>
+
+        <motion.h1
+          custom={1}
+          variants={reveal}
+          initial="hidden"
+          animate="show"
+          className="text-balance text-center text-[clamp(2.6rem,8vw,7rem)] font-semibold leading-[0.95] tracking-[-0.04em]"
+        >
+          <span className="block text-white/95">{dict.hero.h1Line1}</span>
+          <span className="block text-gradient">{dict.hero.h1Line2}</span>
+          <span className="block text-white/95">{dict.hero.h1Line3}</span>
+        </motion.h1>
+
+        <motion.p
+          custom={2}
+          variants={reveal}
+          initial="hidden"
+          animate="show"
+          className="mt-7 max-w-xl text-center text-base text-white/60 md:text-lg"
+        >
+          {dict.hero.leadBefore}{" "}
+          <span className="text-white/85">{dict.hero.leadNext}</span>{" "}
+          {dict.hero.leadAnd}{" "}
+          <span className="text-white/85">{dict.hero.leadTs}</span>
+          {dict.hero.leadAfter}
+        </motion.p>
+
+        <motion.div
+          custom={3}
+          variants={reveal}
+          initial="hidden"
+          animate="show"
+          className="mt-10 flex flex-col items-center gap-3 sm:flex-row"
+        >
+          <MagneticButton
+            href="#work"
+            className="group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-colors active:scale-[0.99]"
+          >
+            <Sparkles className="h-4 w-4" />
+            {dict.hero.ctaWork}
+            <span className="ml-1 transition group-hover:translate-x-0.5">→</span>
+          </MagneticButton>
+          <MagneticButton
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 backdrop-blur transition-colors hover:bg-white/10"
+          >
+            <FileText className="h-4 w-4" />
+            {dict.hero.ctaCv}
+          </MagneticButton>
+        </motion.div>
       </motion.div>
 
-      <motion.h1
-        custom={1}
-        variants={reveal}
-        initial="hidden"
-        animate="show"
-        className="text-balance text-center text-[clamp(2.6rem,8vw,7rem)] font-semibold leading-[0.95] tracking-[-0.04em]"
-      >
-        <span className="block text-white/95">{dict.hero.h1Line1}</span>
-        <span className="block text-gradient">{dict.hero.h1Line2}</span>
-        <span className="block text-white/95">{dict.hero.h1Line3}</span>
-      </motion.h1>
-
-      <motion.p
-        custom={2}
-        variants={reveal}
-        initial="hidden"
-        animate="show"
-        className="mt-7 max-w-xl text-center text-base text-white/60 md:text-lg"
-      >
-        {dict.hero.leadBefore}{" "}
-        <span className="text-white/85">{dict.hero.leadNext}</span>{" "}
-        {dict.hero.leadAnd}{" "}
-        <span className="text-white/85">{dict.hero.leadTs}</span>
-        {dict.hero.leadAfter}
-      </motion.p>
-
       <motion.div
-        custom={3}
-        variants={reveal}
-        initial="hidden"
-        animate="show"
-        className="mt-10 flex flex-col items-center gap-3 sm:flex-row"
-      >
-        <a
-          href="#work"
-          className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:scale-[1.02] active:scale-[0.99]"
-        >
-          <Sparkles className="h-4 w-4" />
-          {dict.hero.ctaWork}
-          <span className="ml-1 transition group-hover:translate-x-0.5">→</span>
-        </a>
-        <a
-          href="/cv.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 backdrop-blur transition hover:bg-white/10"
-        >
-          <FileText className="h-4 w-4" />
-          {dict.hero.ctaCv}
-        </a>
-      </motion.div>
-
-      <motion.div
-        custom={4}
-        variants={reveal}
-        initial="hidden"
-        animate="show"
+        style={{ opacity }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40"
       >
         <ArrowDown className="h-4 w-4 animate-bounce" />

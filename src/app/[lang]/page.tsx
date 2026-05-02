@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
 import { ProjectsSection } from "@/components/ProjectsSection";
+import { ScrollProgressBar } from "@/components/ScrollProgressBar";
 import { SkillsMarquee } from "@/components/SkillsMarquee";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -23,6 +24,7 @@ export default async function Home({
   return (
     <>
       <Background />
+      <ScrollProgressBar />
       <Navbar dict={dict} locale={lang} />
       <main className="relative">
         <Hero dict={dict} />

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Code2, Layers, Rocket, Sparkles } from "lucide-react";
 import type { Dictionary } from "@/i18n/dictionaries";
+import { AnimatedCounter } from "./AnimatedCounter";
 
 type Props = { dict: Dictionary };
 
@@ -65,7 +66,7 @@ export function About({ dict }: Props) {
                 className="rounded-2xl border border-white/10 bg-white/[0.03] p-4"
               >
                 <div className="text-3xl font-semibold tracking-tight text-white md:text-4xl">
-                  {s.value}
+                  <AnimatedCounter value={s.value} />
                 </div>
                 <div className="mt-1 text-xs text-white/50">{s.label}</div>
               </div>
