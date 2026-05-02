@@ -10,11 +10,11 @@ export function AnimatedCounter({ value, duration = 1400 }: Props) {
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const [display, setDisplay] = useState(value);
 
-  // Parse a leading integer + arbitrary trailing characters: "3+" → 3, "+"
-  const match = value.match(/^(\d+)(.*)$/);
-
   useEffect(() => {
     if (!inView) return;
+
+    // Parse a leading integer + arbitrary trailing characters: "3+" → 3, "+"
+    const match = value.match(/^(\d+)(.*)$/);
     if (!match) {
       setDisplay(value);
       return;
@@ -37,7 +37,7 @@ export function AnimatedCounter({ value, duration = 1400 }: Props) {
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView, match, value, duration]);
+  }, [inView, value, duration]);
 
   return (
     <span ref={ref} className="tabular-nums">

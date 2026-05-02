@@ -70,13 +70,15 @@ async function shoot(browser, { slug, url }) {
     // Cold-start grace: Vercel free tier wakes the function on first hit, and
     // some landing pages defer hero images / lazy-load fonts even after
     // networkidle. Give them a moment before we touch the DOM.
-    await new Promise((r) => setTimeout(r, 4000));
+    await new Promise((r) => setTimeout(r, 6000));
 
     // Wait for fonts so type isn't swapping during the screenshot
     await page.evaluate(() => document.fonts && document.fonts.ready);
 
     // Hide cookie banners + force-show any `whileInView` content by nuking
-    // common reveal-animation classes' opacity:0 / transform.
+    // common reveal-animation classes' opacity:0 / transform. Also nuke any
+    // fixed/sticky bottom panel whose text mentions cookies — covers banners
+    // that don't use the conventional class/id naming our selectors expect.
     await page.evaluate((selectors) => {
       const css = `
         ${selectors.join(",")}
@@ -94,6 +96,17 @@ async function shoot(browser, { slug, url }) {
       const style = document.createElement("style");
       style.textContent = css;
       document.head.appendChild(style);
+
+      // Text-based fallback: any fixed/sticky element containing the word
+      // "cookie" / "куки" / "файли" gets nuked too.
+      const re = /cookie|куки|cookies|файли|файлов/i;
+      for (const el of document.querySelectorAll("body *")) {
+        const cs = getComputedStyle(el);
+        if ((cs.position === "fixed" || cs.position === "sticky") &&
+            re.test(el.textContent || "")) {
+          el.style.setProperty("display", "none", "important");
+        }
+      }
     }, HIDE_SELECTORS);
 
     // Trigger a small scroll-up cycle to nudge any IntersectionObservers
@@ -102,8 +115,24 @@ async function shoot(browser, { slug, url }) {
       window.scrollTo(0, 0);
     });
 
+    // Poll until all in-viewport <img> elements have actually decoded — hero
+    // carousels rotate via setInterval and the wait-for-load promise above
+    // resolves on the first slide; by the time we screenshot the slide has
+    // changed to a freshly mounted (still-loading) image. Re-check every 250ms
+    // until the viewport is stable for one tick, with a 12s ceiling.
+    await page.waitForFunction(
+      () => {
+        const imgs = Array.from(document.images).filter((img) => {
+          const r = img.getBoundingClientRect();
+          return r.top < window.innerHeight && r.bottom > 0 && r.width > 4;
+        });
+        return imgs.every((img) => img.complete && img.naturalWidth > 0);
+      },
+      { timeout: 12_000, polling: 250 }
+    ).catch(() => {});
+
     // Settle — let revealed sections render, images decode, hero animations land
-    await new Promise((r) => setTimeout(r, 4000));
+    await new Promise((r) => setTimeout(r, 6000));
 
     const file = path.join(outDir, `${slug}.jpg`);
     await page.screenshot({
