@@ -43,16 +43,33 @@ export function ProjectsSection({ dict }: Props) {
         </motion.div>
       </div>
 
-      <div ref={stackRef} className="relative">
-        {projects.map((p, i) => (
-          <StackedProjectCard
-            key={p.slug}
-            project={p}
-            index={i}
-            total={projects.length}
-            dict={dict}
-          />
-        ))}
+      {/* Pinned stage with absolutely-positioned cards.
+          Section is N × 100vh tall so each card gets one screen of scroll. */}
+      <div
+        ref={stackRef}
+        className="relative"
+        style={{ height: `${projects.length * 100}vh` }}
+      >
+        <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-3 md:px-6">
+          {/* Subtle deck stack peek behind the active card */}
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[calc(100svh-3.5rem)] w-full max-w-6xl -translate-x-1/2 -translate-y-1/2 md:h-[calc(100svh-4rem)]">
+            <div className="absolute inset-x-6 -bottom-2 h-3 rounded-b-[1.75rem] border border-t-0 border-white/10 bg-[#0b0b13]/90" />
+            <div className="absolute inset-x-12 -bottom-4 h-3 rounded-b-[1.75rem] border border-t-0 border-white/10 bg-[#0b0b13]/70" />
+          </div>
+
+          <div className="relative h-[calc(100svh-3.5rem)] w-full max-w-6xl md:h-[calc(100svh-4rem)]">
+            {projects.map((p, i) => (
+              <StackedProjectCard
+                key={p.slug}
+                project={p}
+                index={i}
+                total={projects.length}
+                dict={dict}
+                sectionProgress={scrollYProgress}
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
       <FloatingCounter progress={scrollYProgress} total={projects.length} />
