@@ -77,6 +77,7 @@ export function ProjectCard({ project, index, dict }: Props) {
         {/* Live preview screenshot */}
         <div className="relative aspect-[16/10] w-full overflow-hidden">
           <Preview
+            slug={project.slug}
             url={project.href}
             name={project.name}
             accent={project.accent}

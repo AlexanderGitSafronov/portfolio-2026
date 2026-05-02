@@ -5,22 +5,26 @@ import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 type Props = {
+  slug: string;
   url: string;
   name: string;
   accent: string;
   alt: string;
 };
 
-export function Preview({ url, name, accent, alt }: Props) {
-  // Two screenshot providers — Microlink first (better quality), mShots as fallback.
+export function Preview({ slug, url, name, accent, alt }: Props) {
+  // Static screenshot baked into /public/previews at build time — fastest,
+  // most reliable. Falls back to Microlink, then mShots, then gradient.
+  const local = `/previews/${slug}.jpg`;
   const microlink = `https://api.microlink.io/?url=${encodeURIComponent(
     url
   )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1440&viewport.height=900`;
   const mshots = `https://s.wordpress.com/mshots/v1/${encodeURIComponent(
     url
   )}?w=1440&h=900`;
+  const sources = [local, microlink, mshots];
 
-  const [src, setSrc] = useState<string>(microlink);
+  const [sourceIndex, setSourceIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
 
@@ -29,9 +33,8 @@ export function Preview({ url, name, accent, alt }: Props) {
     name.slice(0, 2).toUpperCase();
 
   function handleError() {
-    if (src === microlink) {
-      // Switch to fallback
-      setSrc(mshots);
+    if (sourceIndex < sources.length - 1) {
+      setSourceIndex((i) => i + 1);
       setLoaded(false);
     } else {
       setErrored(true);
@@ -40,7 +43,6 @@ export function Preview({ url, name, accent, alt }: Props) {
 
   function handleLoad(e: React.SyntheticEvent<HTMLImageElement>) {
     const img = e.currentTarget;
-    // mShots returns a tiny placeholder while still rendering — treat as not loaded yet.
     if (img.naturalWidth < 400) {
       handleError();
       return;
@@ -50,7 +52,7 @@ export function Preview({ url, name, accent, alt }: Props) {
 
   return (
     <div className="relative h-full w-full overflow-hidden">
-      {/* Browser-style chrome on top of preview */}
+      {/* Browser-style chrome */}
       <div className="absolute inset-x-0 top-0 z-20 flex items-center gap-2 border-b border-white/10 bg-[#0b0b13]/90 px-4 py-2 backdrop-blur">
         <div className="flex gap-1.5">
           <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
@@ -72,7 +74,7 @@ export function Preview({ url, name, accent, alt }: Props) {
         </div>
       </div>
 
-      {/* Animated gradient placeholder — visible until image loads or on error */}
+      {/* Gradient placeholder — visible until image loads or on full failure */}
       <div
         className={cn(
           "absolute inset-0 bg-gradient-to-br",
@@ -111,11 +113,12 @@ export function Preview({ url, name, accent, alt }: Props) {
         </div>
       </div>
 
-      {/* Screenshot — fades in over the gradient when ready */}
+      {/* Screenshot */}
       {!errored && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={src}
+          key={sources[sourceIndex]}
+          src={sources[sourceIndex]}
           alt={alt}
           loading="lazy"
           decoding="async"
