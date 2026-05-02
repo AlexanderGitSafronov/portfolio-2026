@@ -55,7 +55,7 @@ export function ProjectDeck({
       style={{ height: `${total * perCardVh}vh` }}
       className={cn("relative mt-6", className)}
     >
-      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-4">
+      <div className="sticky top-20 flex h-[calc(100vh-5rem)] items-center justify-center overflow-hidden px-4 md:top-24 md:h-[calc(100vh-6rem)]">
         {projects.map((p, i) => (
           <DeckCard
             key={p.slug}
