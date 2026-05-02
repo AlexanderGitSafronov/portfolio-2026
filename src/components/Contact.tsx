@@ -45,7 +45,7 @@ export function Contact({ dict }: Props) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent p-8 md:p-14"
+        className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent p-5 sm:p-8 md:p-14"
       >
         <div
           aria-hidden
@@ -89,7 +89,7 @@ export function Contact({ dict }: Props) {
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 backdrop-blur transition hover:border-white/20 hover:bg-white/[0.06]"
+                className="group flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 backdrop-blur transition hover:border-white/20 hover:bg-white/[0.06] sm:px-5"
               >
                 <div className="flex min-w-0 items-center gap-4">
                   <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-white/15 to-white/5 ring-1 ring-white/10">

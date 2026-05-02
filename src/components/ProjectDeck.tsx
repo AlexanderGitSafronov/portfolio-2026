@@ -132,7 +132,7 @@ function DeckCard({
   return (
     <motion.div
       style={{ y, scale, opacity, zIndex: index }}
-      className="absolute inset-x-4 top-1/2 mx-auto w-full max-w-5xl -translate-y-1/2 will-change-transform"
+      className="absolute inset-x-4 top-1/2 mx-auto max-w-5xl -translate-y-1/2 will-change-transform"
     >
       <DeckCardInner project={project} dict={dict} />
     </motion.div>
