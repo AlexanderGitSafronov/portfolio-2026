@@ -192,6 +192,7 @@ function DeckCardInner({
           name={project.name}
           accent={project.accent}
           alt={`${project.name} ${dict.projects.preview}`}
+          eager
         />
       </div>
 

@@ -10,9 +10,10 @@ type Props = {
   name: string;
   accent: string;
   alt: string;
+  eager?: boolean;
 };
 
-export function Preview({ slug, url, name, accent, alt }: Props) {
+export function Preview({ slug, url, name, accent, alt, eager }: Props) {
   // Static screenshot baked into /public/previews at build time — fastest,
   // most reliable. Falls back to Microlink, then mShots, then gradient.
   const local = `/previews/${slug}.jpg`;
@@ -120,7 +121,7 @@ export function Preview({ slug, url, name, accent, alt }: Props) {
           key={sources[sourceIndex]}
           src={sources[sourceIndex]}
           alt={alt}
-          loading="lazy"
+          loading={eager ? "eager" : "lazy"}
           decoding="async"
           referrerPolicy="no-referrer"
           onLoad={handleLoad}
