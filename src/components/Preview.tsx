@@ -54,7 +54,7 @@ export function Preview({ slug, url, name, accent, alt, eager }: Props) {
   return (
     <div className="relative h-full w-full overflow-hidden">
       {/* Browser-style chrome */}
-      <div className="absolute inset-x-0 top-0 z-20 flex items-center gap-2 border-b border-white/10 bg-[#0b0b13]/90 px-4 py-2 backdrop-blur">
+      <div className="absolute inset-x-0 top-0 z-20 flex items-center gap-2 border-b border-white/10 bg-[#0b0b13] px-4 py-2">
         <div className="flex gap-1.5">
           <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
           <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
