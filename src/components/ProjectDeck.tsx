@@ -173,6 +173,7 @@ function DeckCardInner({
 
   return (
     <div
+      style={{ clipPath: "inset(0 round 1.5rem)" }}
       className={cn(
         "card-glow card-border relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0b0b13] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]"
       )}
