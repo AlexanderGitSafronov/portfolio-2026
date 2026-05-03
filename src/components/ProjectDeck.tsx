@@ -8,7 +8,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 import { ArrowUpRight, Lock } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 import type { Project } from "@/lib/projects";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -30,6 +30,15 @@ export function ProjectDeck({
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -39,9 +48,9 @@ export function ProjectDeck({
   const total = projects.length;
   const stride = total > 1 ? 1 / (total - 1) : 1;
 
-  if (reduce) {
+  if (reduce || !isDesktop) {
     return (
-      <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
         {projects.map((p) => (
           <DeckCardStatic key={p.slug} project={p} dict={dict} />
         ))}
@@ -55,7 +64,7 @@ export function ProjectDeck({
       style={{ height: `${total * perCardVh}vh` }}
       className={cn("relative mt-6", className)}
     >
-      <div className="sticky top-20 flex h-[calc(100vh-5rem)] items-center justify-center overflow-hidden px-4 md:top-24 md:h-[calc(100vh-6rem)]">
+      <div className="sticky top-24 flex h-[calc(100dvh-6rem)] items-center justify-center overflow-hidden px-4">
         {projects.map((p, i) => (
           <DeckCard
             key={p.slug}
@@ -184,7 +193,7 @@ function DeckCardInner({
 
       <div
         className="relative w-full overflow-hidden"
-        style={{ height: "min(calc(38vh + 110px), 570px)" }}
+        style={{ height: "min(calc(38dvh + 110px), 570px)" }}
       >
         <Preview
           slug={project.slug}
