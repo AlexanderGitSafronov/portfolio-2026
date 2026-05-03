@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -28,6 +28,20 @@ export function Preview({ slug, url, name, accent, alt, eager }: Props) {
   const [sourceIndex, setSourceIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // The native <img> can finish loading before React attaches onLoad
+  // (especially for cached or pre-fetched eager images). Catch that case
+  // by checking `complete` after each source change.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+    if (img.complete && img.naturalWidth > 0) {
+      if (img.naturalWidth < 400) handleError();
+      else setLoaded(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sourceIndex]);
 
   const initials =
     name.replace(/[^A-Za-z]/g, "").slice(0, 2).toUpperCase() ||
@@ -118,6 +132,7 @@ export function Preview({ slug, url, name, accent, alt, eager }: Props) {
       {!errored && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
+          ref={imgRef}
           key={sources[sourceIndex]}
           src={sources[sourceIndex]}
           alt={alt}
