@@ -52,7 +52,7 @@ export function ProjectCard({ project, index, dict }: Props) {
         ref={ref}
         onMouseMove={onMove}
         className={cn(
-          "card-glow card-border relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl",
+          "card-glow card-border relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0b0b13]",
           "transition-transform duration-500 will-change-transform",
           "hover:-translate-y-1"
         )}
