@@ -1,6 +1,67 @@
 // Backdrop shaders — fragments that fill a fullscreen quad. Tuned to the
 // portfolio's dark palette so they sit behind content as atmosphere.
 
+// Aurora — vertical flowing ribbons of violet/cyan/magenta light, top
+// brighter than bottom. Hero-style backdrop.
+export const auroraFrag = `
+precision highp float;
+uniform float uTime;
+uniform vec2 uResolution;
+
+float hash(vec2 p) {
+  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+}
+
+float noise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  f = f * f * (3.0 - 2.0 * f);
+  return mix(
+    mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+    mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x),
+    f.y
+  );
+}
+
+float fbm(vec2 p) {
+  float v = 0.0;
+  float a = 0.5;
+  for (int i = 0; i < 4; i++) {
+    v += a * noise(p);
+    p *= 2.0;
+    a *= 0.5;
+  }
+  return v;
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / uResolution.xy;
+  float t = uTime * 0.06;
+
+  // Vertical streaks: x stretched, slow drift in y.
+  float band1 = fbm(vec2(uv.x * 3.2 + t * 1.4, uv.y * 0.6 + t * 1.8));
+  float band2 = fbm(vec2(uv.x * 5.5 - t * 0.9, uv.y * 0.4 - t * 1.3 + 4.0));
+  float band3 = fbm(vec2(uv.x * 2.4 + t * 0.6 + 8.0, uv.y * 0.5 + t * 2.4));
+
+  vec3 violet  = vec3(0.55, 0.32, 0.95);
+  vec3 cyan    = vec3(0.32, 0.78, 0.98);
+  vec3 magenta = vec3(0.92, 0.32, 0.78);
+
+  vec3 col = vec3(0.0);
+  col += violet  * smoothstep(0.42, 0.78, band1) * 0.55;
+  col += cyan    * smoothstep(0.45, 0.80, band2) * 0.45;
+  col += magenta * smoothstep(0.62, 0.90, band1 * band3) * 0.40;
+
+  // Top-down brightness falloff so the ribbons feel like they hang from above.
+  col *= smoothstep(0.0, 0.85, 1.0 - uv.y) * 0.85 + 0.15;
+
+  // Tiny base so it doesn't go pure black at the bottom.
+  col += vec3(0.012, 0.018, 0.045);
+
+  gl_FragColor = vec4(col, 1.0);
+}
+`;
+
 export const smokescreenFrag = `
 precision highp float;
 uniform float uTime;

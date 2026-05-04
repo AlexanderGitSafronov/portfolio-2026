@@ -8,7 +8,9 @@ import {
 import { ArrowDown, FileText, Sparkles } from "lucide-react";
 import { useRef } from "react";
 import type { Dictionary } from "@/i18n/dictionaries";
+import { auroraFrag } from "@/lib/shaders";
 import { MagneticButton } from "./MagneticButton";
+import { ShaderBackground } from "./ShaderBackground";
 
 const reveal = {
   hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
@@ -42,11 +44,16 @@ export function Hero({ dict }: Props) {
     <section
       ref={ref}
       id="top"
-      className="relative flex min-h-[100svh] flex-col items-center justify-center px-6 pt-32 pb-20"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pt-32 pb-20"
     >
+      <ShaderBackground fragment={auroraFrag} className="opacity-70" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#050509]"
+      />
       <motion.div
         style={{ opacity, y, scale }}
-        className="relative flex flex-col items-center"
+        className="relative z-10 flex flex-col items-center"
       >
         <motion.div
           custom={0}
