@@ -8,6 +8,7 @@ import { Hero } from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
+import { ShaderLab } from "@/components/ShaderLab";
 import { SkillsMarquee } from "@/components/SkillsMarquee";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -30,6 +31,7 @@ export default async function Home({
         <Hero dict={dict} />
         <SkillsMarquee />
         <ProjectsSection dict={dict} />
+        <ShaderLab dict={dict} />
         <Experience dict={dict} />
         <About dict={dict} />
         <Contact dict={dict} />
