@@ -24,12 +24,6 @@
     "ctaWork": "Explore my work",
     "ctaCv": "Download CV"
   },
-  "lab": {
-    "kicker": "◆ Lab",
-    "titleA": "Custom shaders —",
-    "titleB": "not just a backdrop.",
-    "lead": "GLSL fragment shaders on raw WebGL. ~3KB runtime, only render when in view, pause on tab hidden."
-  },
   "projects": {
     "kicker": "◆ Selected work",
     "titleA": "Live products,",

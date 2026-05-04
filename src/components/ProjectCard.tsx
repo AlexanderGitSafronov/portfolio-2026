@@ -30,10 +30,19 @@ export function ProjectCard({ project, index, dict }: Props) {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    el.style.setProperty("--mx", `${x}%`);
-    el.style.setProperty("--my", `${y}%`);
+    const xPct = (e.clientX - rect.left) / rect.width;
+    const yPct = (e.clientY - rect.top) / rect.height;
+    el.style.setProperty("--mx", `${xPct * 100}%`);
+    el.style.setProperty("--my", `${yPct * 100}%`);
+    const rx = (0.5 - yPct) * 6;
+    const ry = (xPct - 0.5) * 6;
+    el.style.transform = `perspective(900px) translateY(-4px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+  }
+
+  function onLeave() {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = "";
   }
 
   return (
@@ -51,11 +60,11 @@ export function ProjectCard({ project, index, dict }: Props) {
       <div
         ref={ref}
         onMouseMove={onMove}
-        style={{ clipPath: "inset(0 round 1.5rem)" }}
+        onMouseLeave={onLeave}
+        style={{ clipPath: "inset(0 round 1.5rem)", transformStyle: "preserve-3d" }}
         className={cn(
           "card-glow card-border relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0b0b13]",
-          "transition-transform duration-500 will-change-transform",
-          "hover:-translate-y-1"
+          "transition-transform duration-300 will-change-transform [transform-origin:center]"
         )}
       >
         {/* Accent gradient bar */}
