@@ -3,13 +3,14 @@
 import { motion } from "framer-motion";
 import { Code2, Layers, Rocket, Sparkles } from "lucide-react";
 import type { Dictionary } from "@/i18n/dictionaries";
+import { projects } from "@/lib/projects";
 import { AnimatedCounter } from "./AnimatedCounter";
 
 type Props = { dict: Dictionary };
 
 export function About({ dict }: Props) {
   const stats = [
-    { value: "14", label: dict.about.stats.products },
+    { value: String(projects.length), label: dict.about.stats.products },
     { value: "3+", label: dict.about.stats.years },
     { value: "3", label: dict.about.stats.companies },
   ];

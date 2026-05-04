@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Александр Сафронов — Front-end Developer",
-    "description": "Front-end Developer с 3+ годами коммерческого опыта. Лендинги, e-commerce, корпоративные сайты на HTML/CSS/JS, React, WordPress. 14 живых проектов на Vercel."
+    "description": "Front-end Developer с 3+ годами коммерческого опыта. Лендинги, e-commerce, корпоративные сайты на HTML/CSS/JS, React, WordPress. 17 живых проектов на Vercel."
   },
   "nav": {
     "work": "Работы",
@@ -20,7 +20,7 @@
     "leadNext": "React",
     "leadAnd": "и",
     "leadTs": "Next.js",
-    "leadAfter": ". Сейчас веду 14 живых продуктов в продакшне.",
+    "leadAfter": ". Сейчас веду 17 живых продуктов в продакшне.",
     "ctaWork": "Посмотреть работы",
     "ctaCv": "Скачать CV"
   },
@@ -86,6 +86,14 @@
       "task-tracker": {
         "tagline": "Личные задачи",
         "description": "Лёгкий менеджер задач с категориями, дедлайнами и приоритетами."
+      },
+      "arendapro": {
+        "tagline": "Менеджер аренды жилья",
+        "description": "Простой PWA для арендодателей: учёт объектов, доходы, коммуналка и инвентарь. Auth.js + Prisma, мобайл-первый интерфейс."
+      },
+      "gotrack": {
+        "tagline": "Умный трекер поездок",
+        "description": "PWA для учёта поездок: дистанция, топливо, стоимость каждого километра. Быстрый, чистый, устанавливается."
       },
       "crmpro": {
         "tagline": "Платформа CRM",

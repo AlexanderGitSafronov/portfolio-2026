@@ -23,6 +23,8 @@ const projects = [
   { slug: "rashod", url: "https://rashod.vercel.app" },
   { slug: "clue", url: "https://clue-phi.vercel.app" },
   { slug: "task-tracker", url: "https://task-tracker-teal-phi.vercel.app" },
+  { slug: "arendapro", url: "https://arendapro.vercel.app" },
+  { slug: "gotrack", url: "https://gotrack-three.vercel.app" },
   { slug: "crmpro", url: "https://crmpro-gamma.vercel.app" },
 ];
 
