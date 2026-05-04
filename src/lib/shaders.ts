@@ -1,6 +1,5 @@
-// Smokescreen — domain-warped fbm noise that drifts like volumetric smoke.
-// Tuned to the portfolio's deep-blue / violet palette so it sits behind
-// content as atmosphere, not noise.
+// Backdrop shaders — fragments that fill a fullscreen quad. Tuned to the
+// portfolio's dark palette so they sit behind content as atmosphere.
 
 export const smokescreenFrag = `
 precision highp float;
@@ -66,6 +65,55 @@ void main() {
   col = mix(col, hi, smoothstep(0.65, 0.92, n) * 0.55);
 
   // Vignette so edges fall off into the card's own bg.
+  float vd = length(uv - 0.5);
+  col *= smoothstep(0.85, 0.20, vd) * 0.85 + 0.15;
+
+  gl_FragColor = vec4(col, 1.0);
+}
+`;
+
+// Mesh gradient — soft swirling warm tones (orange / pink / violet) that
+// drift slowly. Different mood from the cool smokescreen.
+export const meshGradientFrag = `
+precision highp float;
+uniform float uTime;
+uniform vec2 uResolution;
+
+float blob(vec2 p, vec2 c, float r) {
+  return r / (length(p - c) + 0.0001);
+}
+
+void main() {
+  vec2 res = uResolution.xy;
+  vec2 p = (gl_FragCoord.xy - 0.5 * res) / res.y;
+  p *= 1.6;
+
+  float t = uTime * 0.18;
+
+  vec2 c1 = vec2(sin(t * 1.1) * 0.55, cos(t * 0.9) * 0.5);
+  vec2 c2 = vec2(cos(t * 0.7) * 0.6 + 0.3, sin(t * 1.3) * 0.4 - 0.2);
+  vec2 c3 = vec2(sin(t * 0.5 + 1.3) * 0.7 - 0.2, cos(t * 0.6 + 2.1) * 0.6);
+
+  float i1 = blob(p, c1, 0.30);
+  float i2 = blob(p, c2, 0.25);
+  float i3 = blob(p, c3, 0.28);
+
+  vec3 col1 = vec3(0.96, 0.45, 0.20);
+  vec3 col2 = vec3(0.92, 0.32, 0.62);
+  vec3 col3 = vec3(0.45, 0.30, 0.85);
+  vec3 base = vec3(0.040, 0.030, 0.080);
+
+  float s1 = smoothstep(0.6, 1.4, i1);
+  float s2 = smoothstep(0.6, 1.4, i2);
+  float s3 = smoothstep(0.6, 1.4, i3);
+
+  vec3 col = base;
+  col = mix(col, col1, s1);
+  col = mix(col, col2, s2);
+  col = mix(col, col3, s3);
+
+  // Edge falloff
+  vec2 uv = gl_FragCoord.xy / res;
   float vd = length(uv - 0.5);
   col *= smoothstep(0.85, 0.20, vd) * 0.85 + 0.15;
 
