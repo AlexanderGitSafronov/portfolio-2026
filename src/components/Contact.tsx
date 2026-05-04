@@ -3,7 +3,9 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, FileText, Mail, MessageCircle, Phone } from "lucide-react";
 import type { Dictionary } from "@/i18n/dictionaries";
+import { smokescreenFrag } from "@/lib/shaders";
 import { GithubIcon } from "./icons/GithubIcon";
+import { ShaderBackground } from "./ShaderBackground";
 
 type Props = { dict: Dictionary };
 
@@ -45,18 +47,15 @@ export function Contact({ dict }: Props) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent p-5 sm:p-8 md:p-14"
+        className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#0a0a14] p-5 sm:p-8 md:p-14"
       >
+        <ShaderBackground fragment={smokescreenFrag} className="opacity-90" />
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-32 -right-32 h-80 w-80 rounded-full bg-violet-500/30 blur-3xl"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-cyan-400/20 blur-3xl"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/50"
         />
 
-        <div className="relative grid gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="relative z-10 grid gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-6">
             <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-white/55">
               {dict.contact.kicker}
