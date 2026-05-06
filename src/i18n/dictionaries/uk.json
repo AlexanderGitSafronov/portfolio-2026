@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Олександр Сафронов — Front-end Developer",
-    "description": "Front-end Developer з 3+ роками комерційного досвіду. Лендінги, e-commerce, корпоративні сайти на HTML/CSS/JS, React, WordPress. 17 живих проєктів на Vercel."
+    "description": "Front-end Developer з 3+ роками комерційного досвіду. Лендінги, e-commerce, корпоративні сайти на HTML/CSS/JS, React, WordPress. 19 живих проєктів на Vercel."
   },
   "nav": {
     "work": "Роботи",
@@ -20,7 +20,7 @@
     "leadNext": "React",
     "leadAnd": "та",
     "leadTs": "Next.js",
-    "leadAfter": ". Зараз веду 17 живих продуктів у продакшні.",
+    "leadAfter": ". Зараз веду 19 живих продуктів у продакшні.",
     "ctaWork": "Подивитись роботи",
     "ctaCv": "Завантажити CV"
   },
@@ -94,6 +94,14 @@
       "gotrack": {
         "tagline": "Розумний трекер поїздок",
         "description": "PWA для обліку поїздок: дистанція, паливо, вартість кожного кілометра. Швидкий, чистий, встановлюється."
+      },
+      "lexiflow": {
+        "tagline": "Англійська з інтервальним повторенням",
+        "description": "PWA для вивчення англійської: spaced repetition, AI-тьютор, гейміфікація прогресу."
+      },
+      "happypaws": {
+        "tagline": "Розклад годування для улюбленців",
+        "description": "PWA для власників: графік годувань, порції та нагадування з web push. Next.js 15, Prisma, мультимовність."
       },
       "crmpro": {
         "tagline": "Платформа CRM",

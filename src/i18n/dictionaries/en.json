@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Alexander Safronov — Front-end Developer",
-    "description": "Front-end Developer with 3+ years of commercial experience. Landing pages, e-commerce, and corporate sites with HTML/CSS/JS, React, WordPress. 17 live products shipped on Vercel."
+    "description": "Front-end Developer with 3+ years of commercial experience. Landing pages, e-commerce, and corporate sites with HTML/CSS/JS, React, WordPress. 19 live products shipped on Vercel."
   },
   "nav": {
     "work": "Work",
@@ -20,7 +20,7 @@
     "leadNext": "React",
     "leadAnd": "and",
     "leadTs": "Next.js",
-    "leadAfter": ". Currently shipping 17 live products in production.",
+    "leadAfter": ". Currently shipping 19 live products in production.",
     "ctaWork": "Explore my work",
     "ctaCv": "Download CV"
   },
@@ -94,6 +94,14 @@
       "gotrack": {
         "tagline": "Smart trip tracker",
         "description": "PWA for trips: distance, fuel, and the cost of every kilometer. Fast, clean, installable."
+      },
+      "lexiflow": {
+        "tagline": "English with spaced repetition",
+        "description": "PWA for learning English: spaced repetition, AI tutor, gamified progress."
+      },
+      "happypaws": {
+        "tagline": "Pet feeding scheduler",
+        "description": "PWA for pet owners: feeding schedules, portions, and reminders via web push. Next.js 15, Prisma, i18n."
       },
       "crmpro": {
         "tagline": "Customer relationship platform",

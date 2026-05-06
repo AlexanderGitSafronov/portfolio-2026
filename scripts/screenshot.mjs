@@ -25,6 +25,8 @@ const projects = [
   { slug: "task-tracker", url: "https://task-tracker-teal-phi.vercel.app" },
   { slug: "arendapro", url: "https://arendapro.vercel.app" },
   { slug: "gotrack", url: "https://gotrack-three.vercel.app" },
+  { slug: "lexiflow", url: "https://lexiflow-flame.vercel.app" },
+  { slug: "happypaws", url: "https://happypaws-sooty.vercel.app" },
   { slug: "crmpro", url: "https://crmpro-gamma.vercel.app" },
 ];
 
