@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Alexander Safronov — Front-end Developer",
-    "description": "Front-end Developer with 3+ years of commercial experience. Landing pages, e-commerce, and corporate sites with HTML/CSS/JS, React, WordPress. 19 live products shipped on Vercel."
+    "description": "Front-end Developer with 3+ years of commercial experience. Landing pages, e-commerce, and corporate sites with HTML/CSS/JS, React, WordPress. 20 live products shipped on Vercel."
   },
   "nav": {
     "work": "Work",
@@ -20,7 +20,7 @@
     "leadNext": "React",
     "leadAnd": "and",
     "leadTs": "Next.js",
-    "leadAfter": ". Currently shipping 19 live products in production.",
+    "leadAfter": ". Currently shipping 20 live products in production.",
     "ctaWork": "Explore my work",
     "ctaCv": "Download CV"
   },
@@ -106,6 +106,10 @@
       "crmpro": {
         "tagline": "Customer relationship platform",
         "description": "CRM with leads, deals, contacts and pipeline management."
+      },
+      "adtrack": {
+        "tagline": "Facebook Ads analytics platform",
+        "description": "Analytics for ad creatives: spend, CTR, CPM, ROAS per campaign. A decision engine tells you what to cut and what to scale."
       }
     }
   },

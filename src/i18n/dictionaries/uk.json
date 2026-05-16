@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Олександр Сафронов — Front-end Developer",
-    "description": "Front-end Developer з 3+ роками комерційного досвіду. Лендінги, e-commerce, корпоративні сайти на HTML/CSS/JS, React, WordPress. 19 живих проєктів на Vercel."
+    "description": "Front-end Developer з 3+ роками комерційного досвіду. Лендінги, e-commerce, корпоративні сайти на HTML/CSS/JS, React, WordPress. 20 живих проєктів на Vercel."
   },
   "nav": {
     "work": "Роботи",
@@ -20,7 +20,7 @@
     "leadNext": "React",
     "leadAnd": "та",
     "leadTs": "Next.js",
-    "leadAfter": ". Зараз веду 19 живих продуктів у продакшні.",
+    "leadAfter": ". Зараз веду 20 живих продуктів у продакшні.",
     "ctaWork": "Подивитись роботи",
     "ctaCv": "Завантажити CV"
   },
@@ -106,6 +106,10 @@
       "crmpro": {
         "tagline": "Платформа CRM",
         "description": "CRM з лідами, угодами, контактами і pipeline-менеджментом."
+      },
+      "adtrack": {
+        "tagline": "Аналітика Facebook Ads",
+        "description": "Аналітика запусків реклами: spend, CTR, CPM, ROAS по кожному креативу. Decision engine каже що вимкнути, а що масштабувати."
       }
     }
   },

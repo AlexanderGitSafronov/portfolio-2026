@@ -198,4 +198,14 @@ export const projects: Project[] = [
     year: "2026",
     featured: true,
   },
+  {
+    slug: "adtrack",
+    name: "AdTrack",
+    href: "https://adtrack-frontend.vercel.app",
+    github: "https://github.com/AlexanderGitSafronov/AdTrack",
+    githubPrivate: true,
+    stack: ["Next.js 14", "Recharts", "Prisma", "Facebook Ads API"],
+    accent: "from-blue-600 via-indigo-600 to-violet-600",
+    year: "2026",
+  },
 ];
