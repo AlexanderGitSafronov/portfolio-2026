@@ -116,8 +116,8 @@
         "description": "Premium pizza delivery site with menu, cart and checkout. Fresh ingredients, thin crust, two-tap ordering."
       },
       "pillcare": {
-        "tagline": "Medication delivery service",
-        "description": "Landing for an NHS-approved service that delivers medications to your doorstep in labelled pouches — no more pharmacy runs."
+        "tagline": "Medication reminder app",
+        "description": "Never miss a dose. Simple medication tracker with schedules and reminders."
       }
     }
   },

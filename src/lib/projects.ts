@@ -221,10 +221,10 @@ export const projects: Project[] = [
   {
     slug: "pillcare",
     name: "PillCare",
-    href: "https://pillcare.vercel.app",
+    href: "https://pillcare-delta.vercel.app",
     github: "https://github.com/AlexanderGitSafronov/pillcare",
     githubPrivate: true,
-    stack: ["Next.js", "Tailwind", "Landing"],
+    stack: ["Next.js", "Prisma", "PWA"],
     accent: "from-sky-400 via-teal-500 to-emerald-500",
     year: "2026",
   },
