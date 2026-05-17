@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Олександр Сафронов — Front-end Developer",
-    "description": "Front-end Developer з 3+ роками комерційного досвіду. Лендінги, e-commerce, корпоративні сайти на HTML/CSS/JS, React, WordPress. 20 живих проєктів на Vercel."
+    "description": "Front-end Developer з 3+ роками комерційного досвіду. Лендінги, e-commerce, корпоративні сайти на HTML/CSS/JS, React, WordPress. 22 живих проєкти на Vercel."
   },
   "nav": {
     "work": "Роботи",
@@ -20,7 +20,7 @@
     "leadNext": "React",
     "leadAnd": "та",
     "leadTs": "Next.js",
-    "leadAfter": ". Зараз веду 20 живих продуктів у продакшні.",
+    "leadAfter": ". Зараз веду 22 живих продукти у продакшні.",
     "ctaWork": "Подивитись роботи",
     "ctaCv": "Завантажити CV"
   },
@@ -110,6 +110,14 @@
       "adtrack": {
         "tagline": "Аналітика Facebook Ads",
         "description": "Аналітика запусків реклами: spend, CTR, CPM, ROAS по кожному креативу. Decision engine каже що вимкнути, а що масштабувати."
+      },
+      "bullonipizza": {
+        "tagline": "Доставка італійської піци",
+        "description": "Сайт доставки преміум-піци з меню, кошиком та оформленням замовлення. Свіжі інгредієнти, тонке тісто, замовлення у два тапи."
+      },
+      "pillcare": {
+        "tagline": "Сервіс доставки ліків",
+        "description": "Лендинг сервісу (NHS-approved) з доставкою ліків у підписаних пакетах прямо до дверей — жодних походів в аптеку."
       }
     }
   },
