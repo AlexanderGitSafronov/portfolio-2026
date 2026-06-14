@@ -228,4 +228,14 @@ export const projects: Project[] = [
     accent: "from-sky-400 via-teal-500 to-emerald-500",
     year: "2026",
   },
+  {
+    slug: "orendacalc",
+    name: "OrendaCalc",
+    href: "https://orendacalc.vercel.app",
+    github: "https://github.com/AlexanderGitSafronov/orendacalc",
+    githubPrivate: true,
+    stack: ["Next.js", "Prisma", "Charts", "PWA"],
+    accent: "from-teal-400 via-emerald-500 to-green-500",
+    year: "2026",
+  },
 ];

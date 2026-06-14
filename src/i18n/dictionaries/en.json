@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Alexander Safronov — Front-end Developer",
-    "description": "Front-end Developer with 3+ years of commercial experience. Landing pages, e-commerce, and corporate sites with HTML/CSS/JS, React, WordPress. 22 live products shipped on Vercel."
+    "description": "Front-end Developer with 3+ years of commercial experience. Landing pages, e-commerce, and corporate sites with HTML/CSS/JS, React, WordPress. 23 live products shipped on Vercel."
   },
   "nav": {
     "work": "Work",
@@ -20,7 +20,7 @@
     "leadNext": "React",
     "leadAnd": "and",
     "leadTs": "Next.js",
-    "leadAfter": ". Currently shipping 22 live products in production.",
+    "leadAfter": ". Currently shipping 23 live products in production.",
     "ctaWork": "Explore my work",
     "ctaCv": "Download CV"
   },
@@ -118,6 +118,10 @@
       "pillcare": {
         "tagline": "Medication reminder app",
         "description": "Never miss a dose. Simple medication tracker with schedules and reminders."
+      },
+      "orendacalc": {
+        "tagline": "Real-estate cash-flow calculator",
+        "description": "Plan property investments: loan repayments, monthly cash flow, passive-income forecast and the path to financial freedom."
       }
     }
   },

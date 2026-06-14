@@ -31,6 +31,7 @@ const projects = [
   { slug: "adtrack", url: "https://adtrack-frontend.vercel.app" },
   { slug: "bullonipizza", url: "https://bullonipizza.vercel.app" },
   { slug: "pillcare", url: "https://pillcare-delta.vercel.app" },
+  { slug: "orendacalc", url: "https://orendacalc.vercel.app" },
 ];
 
 // Optional CLI arg: filter to a single slug (useful for re-shooting one site)
