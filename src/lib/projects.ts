@@ -20,7 +20,6 @@ export const projects: Project[] = [
     stack: ["Next.js 15", "PostgreSQL", "Auth.js", "Cloudinary", "PWA"],
     accent: "from-violet-500 via-fuchsia-500 to-pink-500",
     year: "2026",
-    featured: true,
   },
   {
     slug: "myfilms",
@@ -30,7 +29,6 @@ export const projects: Project[] = [
     stack: ["Next.js", "PWA", "TMDB"],
     accent: "from-amber-400 via-orange-500 to-rose-500",
     year: "2026",
-    featured: true,
   },
   {
     slug: "uptolife",
@@ -41,7 +39,6 @@ export const projects: Project[] = [
     stack: ["Next.js 14", "Prisma", "next-intl", "PWA"],
     accent: "from-emerald-400 via-teal-500 to-cyan-500",
     year: "2026",
-    featured: true,
   },
   {
     slug: "wishlist",
@@ -52,7 +49,6 @@ export const projects: Project[] = [
     stack: ["Next.js", "Prisma", "Auth"],
     accent: "from-red-500 via-rose-500 to-fuchsia-500",
     year: "2026",
-    featured: true,
   },
   {
     slug: "homepay",
@@ -63,6 +59,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Prisma", "Auth"],
     accent: "from-sky-400 via-blue-500 to-indigo-500",
     year: "2026",
+    featured: true,
   },
   {
     slug: "mycash",
@@ -84,7 +81,6 @@ export const projects: Project[] = [
     stack: ["Next.js 15", "Prisma", "Cloudinary", "PWA"],
     accent: "from-orange-400 via-pink-500 to-purple-500",
     year: "2026",
-    featured: true,
   },
   {
     slug: "pdfreduct",
@@ -95,7 +91,6 @@ export const projects: Project[] = [
     stack: ["Next.js", "Tailwind", "Prisma", "Vercel Blob"],
     accent: "from-cyan-400 via-blue-500 to-violet-500",
     year: "2026",
-    featured: true,
   },
   {
     slug: "magaz7km",
@@ -156,6 +151,7 @@ export const projects: Project[] = [
     stack: ["Next.js 15", "Prisma", "Auth.js", "PWA"],
     accent: "from-blue-500 via-indigo-500 to-violet-500",
     year: "2026",
+    featured: true,
   },
   {
     slug: "gotrack",
@@ -186,6 +182,7 @@ export const projects: Project[] = [
     stack: ["Next.js 15", "Prisma", "Web Push", "PWA"],
     accent: "from-rose-300 via-pink-400 to-amber-400",
     year: "2026",
+    featured: true,
   },
   {
     slug: "crmpro",
