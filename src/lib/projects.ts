@@ -235,4 +235,14 @@ export const projects: Project[] = [
     accent: "from-teal-400 via-emerald-500 to-green-500",
     year: "2026",
   },
+  {
+    slug: "horand",
+    name: "Horand",
+    href: "https://horand-blond.vercel.app",
+    github: "https://github.com/AlexanderGitSafronov/horand",
+    githubPrivate: true,
+    stack: ["Next.js", "Prisma", "Auth", "e-Sign"],
+    accent: "from-violet-500 via-purple-600 to-indigo-600",
+    year: "2026",
+  },
 ];
